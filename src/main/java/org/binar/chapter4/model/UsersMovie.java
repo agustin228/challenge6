@@ -11,7 +11,6 @@ import javax.persistence.*;
 public class UsersMovie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String email;
 
     @Column(name = "username")
