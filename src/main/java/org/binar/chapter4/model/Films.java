@@ -13,12 +13,13 @@ import java.util.List;
 public class Films {
 
     @Id
-    private String filmCode;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer filmCode;
 
 
     private String filmName;
 
 
-    private boolean isShowing;
+    private boolean showing;
 
 }

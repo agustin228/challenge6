@@ -1,9 +1,13 @@
 package org.binar.chapter4.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,19 +20,20 @@ public class Schedules {
     private Integer scheduleId;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Films filmCode;
 
 
-    private Integer showDate;
+    private Date showDate;
 
 
-    private Integer startTime;
+    private Date startTime;
 
 
-    private Integer endTime;
+    private Date endTime;
 
 
-    private Integer price;
+    private Long price;
 
 
 }

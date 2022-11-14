@@ -9,12 +9,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Embeddable
-public class Seats {
-    @Id
-    private String studioName;
 
-    private Integer chairNumber;
+public class Seats {
+    @EmbeddedId
+    private ChairNumber chairNumber;
+
+    private String studioName;
 
 
 }
