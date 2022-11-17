@@ -9,14 +9,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class UsersMovie {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userId;
-
-    private String email;
-
     private String username;
 
+    private String email;
 
     private String password;
 }

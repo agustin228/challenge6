@@ -10,40 +10,37 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class UsersMovieRepositoryTest {
     @Autowired
     UsersMovieRepository userMovieRepo;
-    UsersMovie usersMovie = new UsersMovie();
+
 
     @Test
         //    Test Case Menambahkan User
-    void testInsertNewUserToDb(String email, String password, String username) {
-        usersMovie.setEmail(email);
-        userMovieRepo.save(usersMovie);
+    void testInsertNewUserToDb() {
+        userMovieRepo.insertUserToDb("email", "password", "username");
 
-        usersMovie.setPassword(password);
-        userMovieRepo.save(usersMovie);
-
-        usersMovie.setUsername(username);
-        userMovieRepo.save(usersMovie);
     }
 
+    //    Test Case Mengupdate User
     @Test
-    void testUpdateUserToDb(String email, String password, String username) {
-        userMovieRepo.updateUserToDb(email, password, username);
-        userMovieRepo.save(usersMovie);
+    void testUpdateUserToDb() {
+        userMovieRepo.updateUserToDb("email", "password", "username");
+
     }
 
+    //    Test Case Menghapus User
     @Test
-    void testDeleteUserFromDb(String username) {
-        userMovieRepo.deleteUserFromDb(username);
-        userMovieRepo.save(usersMovie);
+    void testDeleteUserFromDb() {
+        userMovieRepo.deleteUserFromDb("username");
+
 
     }
 
-    @Test
-    void main() {
-        testInsertNewUserToDb("aa@mail.com", "asdfghj", "Mael");
-        testUpdateUserToDb("aa@mail.com", "asdfghj", "Mael");
-        testDeleteUserFromDb("aa");
+//    @Test
+//    void main() {
+//        testInsertNewUserToDb("aa@mail.com", "asdfghj", "Mael");
+//        testUpdateUserToDb("aa@mail.com", "asdfghj", "Mael");
+//        testDeleteUserFromDb("aa");
+//
+//    }
 
-    }
 
 }

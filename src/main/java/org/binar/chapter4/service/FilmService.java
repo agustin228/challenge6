@@ -8,17 +8,17 @@ import java.util.List;
 
 public interface FilmService {
     //Service menambahkan film baru
-    void addNewFilm(String filmName, boolean showing );
+    void addNewFilm(String filmName, Boolean showing);
 
 
     //Service mengupdate nama film
-    void updateFilm(Films films);
+    void updateFilm(String filmName, Boolean showing, Integer filmCode);
 
     //Service menghapus film
-    void deleteFilm(Integer filmCode);
+    void deleteFilm(String filmName);
 
     //Service menampilkan film yang sedang tayang
-    List<Films> showingFilm(boolean showing);
+    List<Films> showingFilm(Boolean showing);
 
     //Service menampilkan jadwal dari film tertentu
     List<Schedules> showingScheduleFilm(Integer filmCode);

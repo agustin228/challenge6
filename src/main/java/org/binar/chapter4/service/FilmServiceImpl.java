@@ -14,35 +14,46 @@ import java.util.*;
 public class FilmServiceImpl implements FilmService {
     @Autowired
     FilmsRepository filmsrepo;
+    @Autowired
     SchedulesRepository schedRepo;
 
-    @Override
-    public void addNewFilm(String filmName, boolean showing) {
 
+    Films films;
+
+    //Service Menambahkan film baru
+    @Override
+    public void addNewFilm(String filmName, Boolean showing) {
+        filmsrepo.insertFilmToDb(filmName, showing);
+        filmsrepo.save(films);
 
     }
 
-
+    //Service Mengupdate film
     @Override
-    public void updateFilm(Films films) {
-
+    public void updateFilm(String filmName, Boolean showing, Integer filmCode) {
+        filmsrepo.updateFilmToDb(filmName, showing, filmCode);
+        filmsrepo.save(films);
     }
 
+    //Service Menghapus film
     @Override
-    public void deleteFilm(Integer filmCode) {
-
+    public void deleteFilm(String filmName) {
+        filmsrepo.deleteFilmFromDb(filmName);
+        filmsrepo.save(films);
     }
 
+    //Service Menampilkan film yang sedang tayang
     @Override
-    public List<Films> showingFilm(boolean showing) {
-        List<Films> filmList = filmsrepo.findFilmByShowingNative(showing);
+    public List<Films> showingFilm(Boolean showing) {
+        List<Films> filmList = filmsrepo.findFilmByShowing(showing);
         return filmList;
     }
 
+    //Service Menampilkan jadwal dari film tertentu
     @Override
     public List<Schedules> showingScheduleFilm(Integer filmCode) {
         List<Schedules> schedulesList = schedRepo.findScheduleByFilmCode(filmCode);
-        return  schedulesList;
+        return schedulesList;
     }
 
 

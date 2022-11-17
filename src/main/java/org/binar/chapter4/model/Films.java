@@ -20,6 +20,6 @@ public class Films {
     private String filmName;
 
 
-    private boolean showing;
+    private Boolean showing;
 
 }

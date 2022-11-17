@@ -2,11 +2,11 @@ package org.binar.chapter4.service;
 
 public interface UserService {
     //Service menambahkan user baru
-    void addNewUser();
+    void addNewUser(String email, String password, String username);
 
     //Service mengupdate user
-    void updateUser();
+    void updateUser(String email, String password, String username);
 
     //Service menghapus user
-    void deleteUser();
+    void deleteUser(String username);
 }

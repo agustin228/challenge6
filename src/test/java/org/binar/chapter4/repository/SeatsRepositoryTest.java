@@ -12,15 +12,12 @@ public class SeatsRepositoryTest {
     @Autowired
     SeatsRepository seatsRepository;
     //buat object seats untuk data seats
-     Seats seats = new Seats();
-     ChairNumber chairNumber = new ChairNumber();
+    Seats seats = new Seats();
+    ChairNumber chairNumber = new ChairNumber();
 
     //    Test Case Menambahkan Nama Studio
     @Test
     void testInsertStudioNameToDb(String studioName, ChairNumber chairNumber) {
-
-
-
         seatsRepository.save(seats);
 
         //insert data ke table

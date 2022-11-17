@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class ChairNumber implements Serializable {
-
+//Composite key
     private String studio;
     private Integer number;
 
