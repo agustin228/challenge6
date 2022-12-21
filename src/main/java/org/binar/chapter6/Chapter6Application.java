@@ -1,4 +1,4 @@
-package org.binar.chapter5;
+package org.binar.chapter6;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
