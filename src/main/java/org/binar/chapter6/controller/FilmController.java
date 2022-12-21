@@ -1,18 +1,21 @@
-package org.binar.chapter5.controller;
+package org.binar.chapter6.controller;
 
-import org.binar.chapter5.model.Films;
-import org.binar.chapter5.model.Schedules;
-import org.binar.chapter5.service.FilmServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
+import org.binar.chapter6.model.Films;
+import org.binar.chapter6.model.Schedules;
+import org.binar.chapter6.service.FilmServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@Slf4j
 @RestController
 @RequestMapping("/film")
 public class FilmController {
@@ -20,6 +23,8 @@ public class FilmController {
     @Autowired
     FilmServiceImpl filmService;
 
+    @PreAuthorize(value = "hasAuthority('ADMIN')")
+    @Operation(summary = "Memperbarui nama film yang sudah terdaftar")
     @PutMapping("/update")
     public ResponseEntity updateFilm(@RequestParam("filmName") String filmName,
                                      @RequestParam("showing") Boolean showing,
@@ -28,37 +33,42 @@ public class FilmController {
             filmService.updateFilm(filmName, showing, filmCode);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error("ERROR has been found! because : {}", e.getMessage());
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
+    @PreAuthorize(value = "hasAuthority('ADMIN')")
     @PostMapping("/new_film")
+    @Operation(summary = "Menambahkan nama film baru")
     public ResponseEntity insertFilm(@RequestParam("filmName") String filmName,
                                      @RequestParam("showing") Boolean showing) {
         try {
             filmService.addNewFilm(filmName, showing);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.CREATED);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error("ERROR has been found! because : {}", e.getMessage());
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
+    @PreAuthorize(value = "hasAuthority('ADMIN')")
     @DeleteMapping("/delete")
+    @Operation(summary = "Menghapus film")
     public ResponseEntity deleteFilm(@RequestParam("filmName") String filmName) {
 
         try {
             filmService.deleteFilm(filmName);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error("ERROR has been found! because : {}", e.getMessage());
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
     }
 
     @GetMapping("/search_film_by_showing")
+    @Operation(summary = "Menampilkan film yang sedang rilis")
     public ResponseEntity searchShowingFilm(@RequestParam("showing") Boolean showing) {
         try {
             List<Films> filmsList = filmService.showingFilm(showing);
@@ -66,24 +76,24 @@ public class FilmController {
             resp.put("Film yang sedang rilis", filmsList);
             return new ResponseEntity(resp, HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error("ERROR has been found! because {}", e.getMessage());
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/search_schedule_by_film")
+    @Operation(summary = "Menampilkan jadwal dari film tertentu")
     public ResponseEntity searchFilmSchedule(
             @RequestParam("filmCode") Integer filmCode) {
-         try{ List<Schedules> schedulesList = filmService.showingScheduleFilm(filmCode);
+        try {
+            List<Schedules> schedulesList = filmService.showingScheduleFilm(filmCode);
 
-             Map<String, List<Schedules>> resp = new HashMap<>();
-             resp.put("message", schedulesList);
-         return new ResponseEntity(resp, HttpStatus.OK);}
-                catch (Exception e){
-                    System.out.println(e.getMessage());
-             return new ResponseEntity(HttpStatus.NOT_FOUND);
-                }
-
+            Map<String, List<Schedules>> resp = new HashMap<>();
+            resp.put("message", schedulesList);
+            return new ResponseEntity(resp, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("ERROR has been found! because : {}", e.getMessage());
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
-
 }

@@ -1,2 +1,4 @@
-package org.binar.chapter5.configuration;public class SecurityConfig {
+package org.binar.chapter6.configuration;
+
+public class SecurityConfig {
 }

@@ -1,7 +1,7 @@
-package org.binar.chapter5.repository;
+package org.binar.chapter6.repository;
 
 
-import org.binar.chapter5.model.Films;
+import org.binar.chapter6.model.Films;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

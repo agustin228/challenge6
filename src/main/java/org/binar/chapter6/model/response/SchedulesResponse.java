@@ -1,4 +1,4 @@
-package org.binar.chapter5.model.response;
+package org.binar.chapter6.model.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

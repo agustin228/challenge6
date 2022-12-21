@@ -1,17 +1,16 @@
-package org.binar.chapter5.service;
+package org.binar.chapter6.service;
 
-import org.binar.chapter5.model.Films;
-import org.binar.chapter5.model.Schedules;
-import org.binar.chapter5.model.Seats;
-import org.binar.chapter5.repository.FilmsRepository;
-import org.binar.chapter5.repository.SchedulesRepository;
-import org.binar.chapter5.repository.SeatsRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.binar.chapter6.model.Films;
+import org.binar.chapter6.model.Schedules;
+import org.binar.chapter6.repository.FilmsRepository;
+import org.binar.chapter6.repository.SchedulesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-
+@Slf4j
 @Service
 public class FilmServiceImpl implements FilmService {
     @Autowired
@@ -25,40 +24,59 @@ public class FilmServiceImpl implements FilmService {
     //Service Menambahkan film baru
     @Override
     public void addNewFilm(String filmName, Boolean showing) {
-        filmsRepo.insertFilmToDb(filmName, showing);
-        filmsRepo.save(films);
 
+        try {
+            filmsRepo.insertFilmToDb(filmName, showing);
+        } catch (Exception e) {
+            log.error("ERROR has been found! because : {}", e.getMessage());
+        }
     }
 
     //Service Mengupdate film
     @Override
     public void updateFilm(String filmName, Boolean showing, Integer filmCode) {
-        filmsRepo.updateFilmToDb(filmName, showing, filmCode);
-        filmsRepo.save(films);
+        try {
+            filmsRepo.updateFilmToDb(filmName, showing, filmCode);
+        } catch (Exception e) {
+            log.error("ERROR has been found! because : {}", e.getMessage());
+        }
     }
 
     //Service Menghapus film
     @Override
     public void deleteFilm(String filmName) {
-        filmsRepo.deleteFilmFromDb(filmName);
-        filmsRepo.save(films);
+        try {
+            filmsRepo.deleteFilmFromDb(filmName);
+        }catch (Exception e){
+            log.error("ERROR has been found because : {}", e.getMessage());
+        }
+
     }
 
     //Service Menampilkan film yang sedang tayang
     @Override
     public List<Films> showingFilm(Boolean showing) {
-        List<Films> filmList = filmsRepo.findFilmByShowing(showing);
-        return filmList;
+        try{
+            List<Films> filmList = filmsRepo.findFilmByShowing(showing);
+            return filmList;
+        }catch (Exception e){
+            log.error("ERROR has been found! because : {}", e.getMessage());
+            return null;
+        }
+
     }
 
     //Service Menampilkan jadwal dari film tertentu
     @Override
     public List<Schedules> showingScheduleFilm(Integer filmCode) {
-        List<Schedules> schedulesList = schedRepo.findScheduleByFilmCode(filmCode);
-        return schedulesList;
+        try{
+            List<Schedules> schedulesList = schedRepo.findScheduleByFilmCode(filmCode);
+            return schedulesList;
+        } catch (Exception e){
+            log.error("ERROR has been found! because : {}", e.getMessage());
+            return null;
+        }
     }
-
-
 
 
 }

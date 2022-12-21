@@ -1,7 +1,7 @@
-package org.binar.chapter5.repository;
+package org.binar.chapter6.repository;
 
-import org.binar.chapter5.model.ChairNumber;
-import org.binar.chapter5.model.Seats;
+import org.binar.chapter6.model.ChairNumber;
+import org.binar.chapter6.model.Seats;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Repository
 @Transactional

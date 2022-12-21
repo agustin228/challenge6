@@ -1,5 +1,5 @@
-package org.binar.chapter5.model.enumerations;
+package org.binar.chapter6.model.enumerations;
 
 public enum ERoles {
-    ADMIN, CUSTOMER, USER
+    ADMIN, CUSTOMER
 }

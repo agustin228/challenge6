@@ -1,7 +1,7 @@
-package org.binar.chapter5.model;
+package org.binar.chapter6.model;
 
 import lombok.Data;
-import org.binar.chapter5.model.enumerations.ERoles;
+import org.binar.chapter6.model.enumerations.ERoles;
 
 import javax.persistence.*;
 
@@ -17,7 +17,7 @@ public class Roles {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private ERoles role;
+    private ERoles name;
 }
 
 

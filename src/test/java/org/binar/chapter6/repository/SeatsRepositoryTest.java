@@ -1,7 +1,7 @@
-package org.binar.chapter5.repository;
+package org.binar.chapter6.repository;
 
-import org.binar.chapter5.model.ChairNumber;
-import org.binar.chapter5.model.Seats;
+import org.binar.chapter6.model.ChairNumber;
+import org.binar.chapter6.model.Seats;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

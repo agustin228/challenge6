@@ -1,6 +1,4 @@
-package org.binar.chapter5.service;
-
-import org.binar.chapter5.model.UsersMovie;
+package org.binar.chapter6.service;
 
 public interface UserService {
     //Service menambahkan user baru

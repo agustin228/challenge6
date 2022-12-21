@@ -1,12 +1,13 @@
-package org.binar.chapter5.service;
+package org.binar.chapter6.service;
 
 
-import org.apache.catalina.User;
-import org.binar.chapter5.model.UsersMovie;
-import org.binar.chapter5.repository.UsersMovieRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.binar.chapter6.model.UsersMovie;
+import org.binar.chapter6.repository.UsersMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -23,23 +24,31 @@ public class UserServiceImpl implements UserService {
     //Service Menambahkan user baru
     @Override
     public void addNewUser(String email, String password, String username) {
-        userRepo.insertUserToDb(email, password, username);
-        userRepo.save(users);
+        try {
+            userRepo.insertUserToDb(email, password, username);
+        }catch (Exception e){
+            log.error("ERROR has been found! because : {}", e.getMessage());
+        }
     }
 
     //Service Mengupdate user
     @Override
     public void updateUser(String email, String password, String username) {
-        userRepo.updateUserToDb(email, password, username);
-        userRepo.save(users);
+        try{
+            userRepo.updateUserToDb(email, password, username);
+        }catch (Exception e){
+            log.error("ERROR has been found! because : {}", e.getMessage());
+        }
     }
 
     //Service Menghapus user
     @Override
     public void deleteUser(String username) {
-        userRepo.deleteUserFromDb(username);
-        userRepo.save(users);
-
+        try{
+            userRepo.deleteUserFromDb(username);
+        } catch (Exception e){
+            log.error("ERROR has been found! because : {}", e.getMessage());
+        }
     }
 
 

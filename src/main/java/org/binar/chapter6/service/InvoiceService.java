@@ -1,10 +1,6 @@
-package org.binar.chapter5.service;
+package org.binar.chapter6.service;
 
-import org.binar.chapter5.model.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.binar.chapter6.model.*;
 
 
 public interface InvoiceService {

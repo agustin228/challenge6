@@ -1,8 +1,7 @@
-package org.binar.chapter5.service;
+package org.binar.chapter6.service;
 
-import org.binar.chapter5.model.Films;
-import org.binar.chapter5.model.Schedules;
-import org.binar.chapter5.model.Seats;
+import org.binar.chapter6.model.Films;
+import org.binar.chapter6.model.Schedules;
 
 
 import java.util.List;

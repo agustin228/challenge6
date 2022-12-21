@@ -1,17 +1,19 @@
-package org.binar.chapter5.service;
+package org.binar.chapter6.service;
 
-import org.binar.chapter5.model.Films;
-import org.binar.chapter5.model.Schedules;
-import org.binar.chapter5.model.Seats;
-import org.binar.chapter5.model.UsersMovie;
-import org.binar.chapter5.repository.FilmsRepository;
-import org.binar.chapter5.repository.SchedulesRepository;
-import org.binar.chapter5.repository.SeatsRepository;
-import org.binar.chapter5.repository.UsersMovieRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.binar.chapter6.model.Films;
+import org.binar.chapter6.model.Schedules;
+import org.binar.chapter6.model.Seats;
+import org.binar.chapter6.model.UsersMovie;
+import org.binar.chapter6.repository.FilmsRepository;
+import org.binar.chapter6.repository.SchedulesRepository;
+import org.binar.chapter6.repository.SeatsRepository;
+import org.binar.chapter6.repository.UsersMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
-import java.util.List;
+@Slf4j
 @Service
 public class InvoiceServiceImpl implements  InvoiceService {
 
@@ -45,7 +47,12 @@ public class InvoiceServiceImpl implements  InvoiceService {
 
     @Override
     public UsersMovie getUser(String username) {
-        return userRepo.getUsername(username);
-
+        try{
+            UsersMovie consumer =  userRepo.getUsername(username);
+            return consumer;
+        }catch (Exception e){
+            log.error("ERROR has been found! because : {}", e.getMessage());
+            return null;
+        }
     }
 }

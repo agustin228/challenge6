@@ -1,7 +1,6 @@
-package org.binar.chapter5.repository;
+package org.binar.chapter6.repository;
 
-import org.apache.catalina.User;
-import org.binar.chapter5.model.UsersMovie;
+import org.binar.chapter6.model.UsersMovie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,8 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.sql.ResultSet;
-import java.util.*;
 
 @Transactional
 @Repository
